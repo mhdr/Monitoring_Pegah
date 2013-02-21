@@ -1,0 +1,240 @@
+﻿<Window xmlns:ni="http://schemas.ni.com/controls/2009/xaml/presentation" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="clr-namespace:Monitoring" 
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+        x:Class="Monitoring.MainWindow"
+        Title="صفحه اصلی" Height="477" Width="629" Loaded="Window_Loaded"
+        WindowState="Maximized">
+    <Grid FlowDirection="RightToLeft">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition MinHeight="10" MaxHeight="25"/>
+        </Grid.RowDefinitions>
+        <DockPanel Background="#E7EEF4">
+            <telerik:RadRibbonView
+				Name="RibbonView1"
+                DockPanel.Dock="Top"
+                HorizontalAlignment="Stretch"
+                ApplicationName="داده های لحظه ای"
+                >
+                <telerik:RadRibbonTab Header="خانه" Name="RibbonTabHome" MinWidth="70">
+                    <telerik:RadRibbonGroup>
+                        <telerik:RadRibbonButton
+							Name="RibbonButtonStart"
+							Content="شروع"
+							MinWidth="75"
+							HorizontalContentAlignment="Center" Click="RibbonButtonStart_Click"/>
+                    </telerik:RadRibbonGroup>
+
+                    <telerik:RadRibbonGroup>
+                        <telerik:RadRibbonButton
+							Name="RibbonButtonStop"
+							Content="توقف"
+							MinWidth="75"
+							HorizontalContentAlignment="Center" Click="RibbonButtonStop_Click" IsEnabled="False" />
+                    </telerik:RadRibbonGroup>
+
+                    <telerik:RadRibbonGroup>
+                        <telerik:RadRibbonButton Name="RibbonButtonShowChart" Content="نمایش نمودار" MinWidth="75"
+                                                 HorizontalContentAlignment="Center" Click="RibbonButtonShowChart_Click"/>
+                    </telerik:RadRibbonGroup>
+
+                    <telerik:RadRibbonGroup>
+                        <telerik:RadRibbonButton Name="RibbonButtonShowChart2" Content="نمایش نمودار ۲" MinWidth="75"
+                                                 HorizontalContentAlignment="Center" Click="RibbonButtonShowChart2_Click"/>
+                    </telerik:RadRibbonGroup>
+
+                    <telerik:RadRibbonGroup>
+                        <telerik:RadRibbonButton Name="RibbonButtonShodGrid" Content="نمایش جدول" MinWidth="75"
+                                                 HorizontalContentAlignment="Center" Click="RibbonButtonShowGrid_Click"/>
+                    </telerik:RadRibbonGroup>
+
+                    <telerik:RadRibbonGroup>
+                        <telerik:RadRibbonButton Name="RibbonButtonDeviceStausHistories" Content="سوابق وضعیت دستگاه" MinWidth="75"
+                                                 HorizontalContentAlignment="Center" Click="RibbonButtonDeviceStausHistories_Click"/>
+                    </telerik:RadRibbonGroup>
+
+                    <telerik:RadRibbonGroup>
+                        <telerik:RadRibbonButton Name="RibbonButtonAbout" Content="درباره" MinWidth="75"
+                                                 HorizontalContentAlignment="Center" Click="RibbonButtonAbout_Click_1"/>
+                    </telerik:RadRibbonGroup>
+                </telerik:RadRibbonTab>
+
+                <telerik:RadRibbonTab Name="RibbonTabSettings" Header="تنظیمات" MinWidth="70">
+
+
+
+                    <telerik:RadRibbonGroup>
+                        <telerik:RadRibbonButton Name="RibbonButtonCalibration" Content="کالیبره" MinWidth="75"
+                                                 HorizontalContentAlignment="Center" Click="RibbonButtonCalibration_Click_1"/>
+                    </telerik:RadRibbonGroup>
+                </telerik:RadRibbonTab>
+            </telerik:RadRibbonView>
+
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <Grid>
+
+                    <telerik:RadTabControl>
+                        <telerik:RadTabItem>
+                            <telerik:RadTabItem.Header>
+                                <Border Width="80" Height="25">
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">تانک ها</TextBlock>
+                                </Border>
+                            </telerik:RadTabItem.Header>
+                            <WrapPanel Name="WrapPanel1">
+                                <my:MonitoringAIO x:Name="monitoringIOText1" IPAddress="192.168.17.19" ILModuleNumber="1" PDInWord="2" Title="تانک ۱" Id="1"/>
+                                <my:MonitoringAIO x:Name="monitoringIOText2" IPAddress="192.168.17.19" ILModuleNumber="1" PDInWord="1" Title="تانک ۲" Id="2" />
+                                <my:MonitoringAIO x:Name="monitoringIOText3" IPAddress="192.168.17.19" ILModuleNumber="2" PDInWord="1" Id="3" Title="تانک ۳" />
+                                <my:MonitoringAIO x:Name="monitoringIOText4" IPAddress="192.168.17.19" ILModuleNumber="2" PDInWord="2" Title="تانک ۴" Id="4" />
+                                <my:MonitoringAIO x:Name="monitoringIOText5" IPAddress="192.168.17.19" ILModuleNumber="3" PDInWord="1" Title="تانک ۵" Id="5" />
+                                <my:MonitoringAIO x:Name="monitoringIOText6" IPAddress="192.168.17.19" ILModuleNumber="3" PDInWord="2" Title="تانک ۶" Id="6" />
+                                <my:MonitoringAIO x:Name="monitoringIOText7" IPAddress="192.168.17.19" ILModuleNumber="4" PDInWord="1" Title="تانک ۷" Id="7" />
+                                <my:MonitoringAIO x:Name="monitoringIOText8" IPAddress="192.168.17.19" ILModuleNumber="4" PDInWord="2" Title="تانک ۸" Id="8" />
+                                <my:MonitoringAIO x:Name="monitoringIOText9" IPAddress="192.168.17.19" ILModuleNumber="5" PDInWord="1" Title="تانک ۹" Id="9" />
+                                <my:MonitoringAIO x:Name="monitoringIOText10" IPAddress="192.168.17.19" ILModuleNumber="5" PDInWord="2" Title="تانک ۱۰" Id="10" />
+                                <my:MonitoringAIO x:Name="monitoringIOText11" IPAddress="192.168.17.19" ILModuleNumber="6" PDInWord="1" Title="تانک ۱۱" Id="11" />
+                                <my:MonitoringAIO x:Name="monitoringIOText12" IPAddress="192.168.17.19" ILModuleNumber="6" PDInWord="2" Title="تانک ۱۴" Id="12" IsMonitoringEnabled="False"/>
+                                <my:MonitoringAIO x:Name="monitoringIOText13" IPAddress="192.168.17.19" ILModuleNumber="9" PDInWord="1" Title="تانک ۱۵-۱" Id="13" />
+                                <my:MonitoringAIO x:Name="monitoringIOText14" IPAddress="192.168.17.19" ILModuleNumber="9" PDInWord="2" Title="تانک ۱۵-۲" Id="14" />
+                                <my:MonitoringAIO x:Name="monitoringIOText15" IPAddress="192.168.17.19" ILModuleNumber="16" PDInWord="1" Title="تانک ۱۶" Id="15" />
+                                <my:MonitoringAIO x:Name="monitoringIOText17" IPAddress="192.168.17.19" ILModuleNumber="16" PDInWord="2" Title="تانک ۱۷" Id="17" />
+                                <my:MonitoringAIO x:Name="monitoringIOText18" IPAddress="192.168.17.18" ILModuleNumber="9" PDInWord="2" Title="تانک ۲۶" Id="18" />
+                                <my:MonitoringAIO x:Name="monitoringIOText19" IPAddress="192.168.17.18" ILModuleNumber="10" PDInWord="1" Title="تانک کفیر" Id="19" />
+                                <my:MonitoringAIO x:Name="monitoringIOText20" IPAddress="192.168.17.19" ILModuleNumber="17" PDInWord="2" Title="تانک ۵۰-۱" Id="20" />
+                                <my:MonitoringAIO x:Name="monitoringIOText16" IPAddress="192.168.17.19" ILModuleNumber="12" PDInWord="2" Title="تانک ۵۰-۲" Id="20" />
+                            </WrapPanel>
+                        </telerik:RadTabItem>
+
+                        <telerik:RadTabItem>
+                            <telerik:RadTabItem.Header>
+                                <Border Width="80" Height="25">
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">پاستور ها</TextBlock>
+                                </Border>
+                            </telerik:RadTabItem.Header>
+                            <WrapPanel Name="WrapPanel2">
+                                <my:MonitoringAIO x:Name="monitoringIOText21" IPAddress="192.168.17.19" ILModuleNumber="10" PDInWord="2" Title="هلدینگ دریافت(۱۰ تنی)" Id="21" />
+                                <my:MonitoringAIO x:Name="monitoringIOText22" IPAddress="192.168.17.18" ILModuleNumber="11" PDInWord="2" Title="هلدینگ آلفاپک(۲۰ تنی)" Id="22" />
+                                <my:MonitoringAIO x:Name="monitoringIOText23" IPAddress="192.168.17.19" ILModuleNumber="13" PDInWord="1" Title="هلدینگ آلفالاوال(۲۰ تنی)" Id="23" />
+                                <my:MonitoringAIO x:Name="monitoringIOText24" IPAddress="192.168.17.19" ILModuleNumber="10" PDInWord="1" Title="هلدینگ دوغ(۱۰ تنی)" Id="24" />
+                                <my:MonitoringAIO x:Name="monitoringIOText25" IPAddress="192.168.17.19" ILModuleNumber="6" PDInWord="2" Title="خروجی دریافت(۱۰ تنی)" Id="25" />
+                                <my:MonitoringAIO x:Name="monitoringIOText26" IPAddress="192.168.17.18" ILModuleNumber="13" PDInWord="2" Title="خروجی آلفاپک(۲۰ تنی)" Id="26" />
+                                <my:MonitoringAIO x:Name="monitoringIOText27" IPAddress="192.168.17.19" ILModuleNumber="14" PDInWord="2" Title="خروجی آلفالاوال(۲۰ تنی)" Id="29" />
+                                <my:MonitoringAIO x:Name="monitoringIOText28" IPAddress="192.168.17.19" ILModuleNumber="12" PDInWord="1" Title="خروجی دوغ(۱۰ تنی)" Id="30" />
+                            </WrapPanel>
+                        </telerik:RadTabItem>
+
+                        <telerik:RadTabItem>
+                            <telerik:RadTabItem.Header>
+                                <Border Width="80" Height="25">
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">سردخانه ها</TextBlock>
+                                </Border>
+                            </telerik:RadTabItem.Header>
+                            <WrapPanel Name="WrapPanel3">
+                                <my:MonitoringAIO x:Name="monitoringIOText29" IPAddress="192.168.17.18" ILModuleNumber="5" PDInWord="2" Title="۱" Id="31" />
+                                <my:MonitoringAIO x:Name="monitoringIOText30" IPAddress="192.168.17.18" ILModuleNumber="6" PDInWord="1" Title="۲" Id="32" />
+                                <my:MonitoringAIO x:Name="monitoringIOText31" IPAddress="192.168.17.18" ILModuleNumber="6" PDInWord="2" Title="۳" Id="33" />
+                                <my:MonitoringAIO x:Name="monitoringIOText32" IPAddress="192.168.17.18" ILModuleNumber="7" PDInWord="1" Title="۴" Id="34" />
+                                <my:MonitoringAIO x:Name="monitoringIOText33" IPAddress="192.168.17.18" ILModuleNumber="7" PDInWord="2" Title="۵" Id="35" />
+                                <my:MonitoringAIO x:Name="monitoringIOText34" IPAddress="192.168.17.18" ILModuleNumber="8" PDInWord="1" Title="۶" Id="36" />
+                                <my:MonitoringAIO x:Name="monitoringIOText35" IPAddress="192.168.17.18" ILModuleNumber="8" PDInWord="2" Title="۷" Id="37" />
+                                <my:MonitoringAIO x:Name="monitoringIOText36" IPAddress="192.168.17.18" ILModuleNumber="9" PDInWord="1" Title="۸" Id="38" />
+                            </WrapPanel>
+                        </telerik:RadTabItem>
+
+                        <telerik:RadTabItem>
+                            <telerik:RadTabItem.Header>
+                                <Border Width="80" Height="25">
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">گرمخانه ها</TextBlock>
+                                </Border>
+                            </telerik:RadTabItem.Header>
+                            <WrapPanel Name="WrapPanel4">
+                                <my:MonitoringAIO x:Name="monitoringIOText37" IPAddress="192.168.17.18" ILModuleNumber="1" PDInWord="1" Title="۱" Id="39" />
+                                <my:MonitoringAIO x:Name="monitoringIOText38" IPAddress="192.168.17.18" ILModuleNumber="1" PDInWord="2" Title="۲" Id="40" />
+                                <my:MonitoringAIO x:Name="monitoringIOText39" IPAddress="192.168.17.18" ILModuleNumber="2" PDInWord="1" Title="۳" Id="41" />
+                                <my:MonitoringAIO x:Name="monitoringIOText40" IPAddress="192.168.17.18" ILModuleNumber="2" PDInWord="2" Title="۴" Id="42" />
+                                <my:MonitoringAIO x:Name="monitoringIOText41" IPAddress="192.168.17.18" ILModuleNumber="3" PDInWord="1" Title="۵" Id="43" />
+                                <my:MonitoringAIO x:Name="monitoringIOText42" IPAddress="192.168.17.18" ILModuleNumber="3" PDInWord="2" Title="۶" Id="44" />
+                                <my:MonitoringAIO x:Name="monitoringIOText43" IPAddress="192.168.17.18" ILModuleNumber="4" PDInWord="1" Title="۷" Id="45" />
+                                <my:MonitoringAIO x:Name="monitoringIOText44" IPAddress="192.168.17.18" ILModuleNumber="4" PDInWord="2" Title="۸" Id="46" />
+                                <my:MonitoringAIO x:Name="monitoringIOText45" IPAddress="192.168.17.18" ILModuleNumber="5" PDInWord="1" Title="۹" Id="47" />
+                            </WrapPanel>
+                        </telerik:RadTabItem>
+
+                        <telerik:RadTabItem>
+                            <telerik:RadTabItem.Header>
+                                <Border Width="80" Height="25">
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">آب یخ</TextBlock>
+                                </Border>
+                            </telerik:RadTabItem.Header>
+                            <WrapPanel Name="WrapPanel5">
+                                <my:MonitoringAIO x:Name="monitoringIOText46" IPAddress="192.168.17.19" ILModuleNumber="11" PDInWord="2" Title="بانک یخ ۱" Id="48" />
+                                <my:MonitoringAIO x:Name="monitoringIOText47" IPAddress="192.168.17.19" ILModuleNumber="8" PDInWord="1" Title="بانک یخ ۲" Id="49" />
+                                <my:MonitoringAIO x:Name="monitoringIOText48" IPAddress="192.168.17.19" ILModuleNumber="8" PDInWord="2" Title="بانک یخ ۳" Id="50" />
+                                <my:MonitoringAIO x:Name="monitoringIOText49" IPAddress="192.168.17.19" ILModuleNumber="17" PDInWord="1" Title="آب سرد" Id="51" />
+                                <my:MonitoringAIO x:Name="monitoringIOText50" IPAddress="192.168.17.18" ILModuleNumber="10" PDInWord="1" Title="لاکتا" Id="52" />
+                            </WrapPanel>
+                        </telerik:RadTabItem>
+
+                        <telerik:RadTabItem>
+                            <telerik:RadTabItem.Header>
+                                <Border Width="80" Height="25">
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">CIP</TextBlock>
+                                </Border>
+                            </telerik:RadTabItem.Header>
+                            <WrapPanel Name="WrapPanel6">
+                                <my:MonitoringAIO x:Name="monitoringIOText51" IPAddress="192.168.17.19" ILModuleNumber="11" PDInWord="1" Title="A" Id="53" />
+                                <my:MonitoringAIO x:Name="monitoringIOText52" IPAddress="192.168.17.19" ILModuleNumber="11" PDInWord="2" Title="B" Id="54" />
+                                <my:MonitoringAIO x:Name="monitoringIOText53" IPAddress="192.168.17.19" ILModuleNumber="7" PDInWord="2" Title="C" Id="55" />
+                            </WrapPanel>
+                        </telerik:RadTabItem>
+
+                        <telerik:RadTabItem>
+                            <telerik:RadTabItem.Header>
+                                <Border Width="80" Height="25">
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">پلیت کولر</TextBlock>
+                                </Border>
+                            </telerik:RadTabItem.Header>
+                            <WrapPanel Name="WrapPanel7">
+                                <my:MonitoringAIO x:Name="monitoringIOText54" IPAddress="192.168.17.19" ILModuleNumber="15" PDInWord="2" Title="۱" Id="56" />
+                                <my:MonitoringAIO x:Name="monitoringIOText55" IPAddress="192.168.17.19" ILModuleNumber="16" PDInWord="1" Title="۲" Id="57" />
+                            </WrapPanel>
+                        </telerik:RadTabItem>
+
+                        <telerik:RadTabItem>
+                            <telerik:RadTabItem.Header>
+                                <Border Width="80" Height="25">
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">استریل</TextBlock>
+                                </Border>
+                            </telerik:RadTabItem.Header>
+                            <WrapPanel Name="WrapPanel8">
+                                <my:MonitoringAIO x:Name="monitoringIOText56" IPAddress="192.168.17.19" ILModuleNumber="7" PDInWord="1" Title="VTIS" Id="58" />
+                                <my:MonitoringAIO x:Name="monitoringIOText57" IPAddress="192.168.17.18" ILModuleNumber="9" PDInWord="2" Title="CIP پری پک" Id="59" />
+                            </WrapPanel>
+                        </telerik:RadTabItem>
+
+                        <telerik:RadTabItem>
+                            <telerik:RadTabItem.Header>
+                                <Border Width="80" Height="25">
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">بقیه</TextBlock>
+                                </Border>
+                            </telerik:RadTabItem.Header>
+                            <WrapPanel Name="WrapPanel9">
+                                <my:MonitoringAIO x:Name="monitoringIOText58" IPAddress="192.168.17.19" ILModuleNumber="17" PDInWord="2" Id="60" />
+                                <my:MonitoringAIO x:Name="monitoringIOText59" IPAddress="192.168.17.19" ILModuleNumber="18" PDInWord="1" Id="61" />
+                                <my:MonitoringAIO x:Name="monitoringIOText60" IPAddress="192.168.17.19" ILModuleNumber="18" PDInWord="2" Id="62" />
+                                <my:MonitoringAIO x:Name="monitoringIOText61" IPAddress="192.168.17.19" ILModuleNumber="19" PDInWord="1" Id="63" />
+                                <my:MonitoringAIO x:Name="monitoringIOText62" IPAddress="192.168.17.19" ILModuleNumber="19" PDInWord="2" Id="64" />
+                            </WrapPanel>
+                        </telerik:RadTabItem>
+                    </telerik:RadTabControl>
+                </Grid>
+            </ScrollViewer>
+        </DockPanel>
+
+        <StatusBar Name="StatusBar1" DockPanel.Dock="Bottom" Height="25" Grid.Row="1" Background="#FFDBE4EE">
+            <ni:LED Name="Led18" MinWidth="15" MinHeight="15" Margin="5,0" />
+            <ni:LED Name="Led19" MinWidth="15" MinHeight="15" Margin="0,0,5,0" />
+        </StatusBar>
+    </Grid>
+</Window>

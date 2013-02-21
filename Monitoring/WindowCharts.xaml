@@ -1,0 +1,105 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" mc:Ignorable="d" x:Class="Monitoring.WindowCharts"
+        Title="نمودار نوع ۱" Height="462" Width="782" WindowState="Maximized" 
+    Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition MinHeight="10" MaxHeight="25"/>
+        </Grid.RowDefinitions>
+        <DockPanel>
+            <telerik:RadRibbonView FlowDirection="RightToLeft"
+				Name="RibbonView1"
+                DockPanel.Dock="Top"
+                HorizontalAlignment="Stretch"
+                ApplicationName="" 
+                >
+                <telerik:RadRibbonTab Header="خانه" Name="RibbonTabHome" MinWidth="70">
+                    <telerik:RadRibbonGroup>
+                        <telerik:RadRibbonButton
+							Name="RibbonButtonChangeDate"
+							Content="بازه زمانی"
+							MinWidth="70"
+							HorizontalContentAlignment="Center" Click="RibbonButtonChangeDate_Click"/>
+                    </telerik:RadRibbonGroup>
+
+                    <telerik:RadRibbonGroup>
+                        <telerik:RadRibbonButton
+							Name="RibbonButtonShowChart2"
+							Content="نمایش نمودار ۲"
+							MinWidth="70"
+							HorizontalContentAlignment="Center" Click="RibbonButtonShowChart2_Click"/>
+                    </telerik:RadRibbonGroup>
+
+                    <telerik:RadRibbonGroup>
+                        <telerik:RadRibbonDropDownButton Content="بزرگ نمایی"
+							Name="RibbonDropDownButtonZoom"
+							HorizontalContentAlignment="Center"
+							MinWidth="70">
+                            <telerik:RadDropDownButton.DropDownContent>
+                                <telerik:RadContextMenu>
+                                    <telerik:RadMenuItem Header="بزرگ نمایی بیشتر" Name="MenuItemZoomIn" 
+                                                     Click="MenuItemZoomIn_Click"/>
+
+                                    <telerik:RadMenuItem Header="بدون بزرگ نمایی" Name="MenuItemResetZoom" Click="MenuItemResetZoom_Click"/>
+
+                                    <telerik:RadMenuItem Header="بزرگ نمایی کمتر" Name="MenuItemZoomOut" 
+                                                     Click="MenuItemZoomOut_Click"/>
+                                </telerik:RadContextMenu>
+                            </telerik:RadDropDownButton.DropDownContent>
+                        </telerik:RadRibbonDropDownButton>
+                    </telerik:RadRibbonGroup>
+
+                    <telerik:RadRibbonGroup>
+                        <telerik:RadToggleButton Content="انیمیشن" Name="ToggleButtonAnimationForChartEnabled" MinWidth="70"
+                                                 Click="ToggleButtonAnimationForChartEnabled_Click"/>
+                    </telerik:RadRibbonGroup>
+
+                    <telerik:RadRibbonGroup>
+                        <telerik:RadRibbonDropDownButton Content="نوع نمودار" MinWidth="70">
+                            <telerik:RadRibbonDropDownButton.DropDownContent>
+                                <telerik:RadContextMenu>
+                                    <telerik:RadMenuItem Header="خطی" Name="MenuItemLineSeriesDefinition"
+                                                         Click="MenuItemLineSeriesDefinition_Click"/>
+                                    <telerik:RadMenuItem Header="خطی زبانه دار" Name="MenuItemSplineSeriesDefinition"
+                                                         Click="MenuItemSplineSeriesDefinition_Click"/>
+                                    <telerik:RadMenuItem Header="میله ای" Name="MenuItemBarSeriesDefinition" 
+                                                         Click="MenuItemBarSeriesDefinition_Click"
+/>
+                                </telerik:RadContextMenu>
+                            </telerik:RadRibbonDropDownButton.DropDownContent>
+                        </telerik:RadRibbonDropDownButton>
+                    </telerik:RadRibbonGroup>
+
+                    <telerik:RadRibbonGroup>
+                        <telerik:RadRibbonDropDownButton Content="بیرون بردن"
+                                                         Name="RibbonDropDownButtonExport"
+                                                         HorizontalContentAlignment="Center" MinWidth="70">
+                            <telerik:RadDropDownButton.DropDownContent>
+                                <telerik:RadContextMenu>
+                                    <telerik:RadMenuItem Header="خروجی به اکسل" Name="MenuItemExportToExcel"
+                                                         Click="MenuItemExportToExcel_Click"/>
+                                    <telerik:RadMenuItem Header="خروجی به عکس" Name="MenuItemExportToPNG" Click="MenuItemExportToPNG_Click"/>
+                                </telerik:RadContextMenu>
+                            </telerik:RadDropDownButton.DropDownContent>
+                        </telerik:RadRibbonDropDownButton>
+                    </telerik:RadRibbonGroup>
+
+
+                </telerik:RadRibbonTab>
+            </telerik:RadRibbonView>
+
+            <telerik:RadBusyIndicator Name="busyIndicator" IsIndeterminate="True" BusyContent="در حال بارگذاری...">
+                <telerik:RadChart x:Name="chart" />
+            </telerik:RadBusyIndicator>
+
+        </DockPanel>
+
+        <StatusBar Name="StatusBar1" DockPanel.Dock="Bottom" Height="25" Grid.Row="1" Background="#FFDBE4EE">
+
+        </StatusBar>
+    </Grid>
+</Window>

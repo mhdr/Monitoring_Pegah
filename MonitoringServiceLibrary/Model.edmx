@@ -1,0 +1,649 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MonitoringModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="MonitoringModelStoreContainer">
+          <EntitySet Name="Calibration" EntityType="MonitoringModel.Store.Calibration" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DeviceStatus" EntityType="MonitoringModel.Store.DeviceStatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DeviceStatusHistory" EntityType="MonitoringModel.Store.DeviceStatusHistory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DeviceStatusHistoryLastValues" EntityType="MonitoringModel.Store.DeviceStatusHistoryLastValues" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HistoricalData" EntityType="MonitoringModel.Store.HistoricalData" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Ids" EntityType="MonitoringModel.Store.Ids" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LastValues" EntityType="MonitoringModel.Store.LastValues" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ReadIntervals" EntityType="MonitoringModel.Store.ReadIntervals" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Update" EntityType="MonitoringModel.Store.Update" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UpdateDetails" EntityType="MonitoringModel.Store.UpdateDetails" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Calibration_Ids" Association="MonitoringModel.Store.FK_Calibration_Ids">
+            <End Role="Ids" EntitySet="Ids" />
+            <End Role="Calibration" EntitySet="Calibration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeviceStatusHistory_DeviceStatus" Association="MonitoringModel.Store.FK_DeviceStatusHistory_DeviceStatus">
+            <End Role="DeviceStatus" EntitySet="DeviceStatus" />
+            <End Role="DeviceStatusHistory" EntitySet="DeviceStatusHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeviceStatusHistoryLastValues_DeviceStatus" Association="MonitoringModel.Store.FK_DeviceStatusHistoryLastValues_DeviceStatus">
+            <End Role="DeviceStatus" EntitySet="DeviceStatus" />
+            <End Role="DeviceStatusHistoryLastValues" EntitySet="DeviceStatusHistoryLastValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoricalData_Ids" Association="MonitoringModel.Store.FK_HistoricalData_Ids">
+            <End Role="Ids" EntitySet="Ids" />
+            <End Role="HistoricalData" EntitySet="HistoricalData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LastValues_Ids" Association="MonitoringModel.Store.FK_LastValues_Ids">
+            <End Role="Ids" EntitySet="Ids" />
+            <End Role="LastValues" EntitySet="LastValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReadIntervals_Ids" Association="MonitoringModel.Store.FK_ReadIntervals_Ids">
+            <End Role="Ids" EntitySet="Ids" />
+            <End Role="ReadIntervals" EntitySet="ReadIntervals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UpdateDetails_Update" Association="MonitoringModel.Store.FK_UpdateDetails_Update">
+            <End Role="Update" EntitySet="Update" />
+            <End Role="UpdateDetails" EntitySet="UpdateDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Calibration">
+          <Key>
+            <PropertyRef Name="CalibrationId" />
+          </Key>
+          <Property Name="CalibrationId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdId" Type="int" Nullable="false" />
+          <Property Name="CalibrationOperation" Type="int" Nullable="false" />
+          <Property Name="CalibrationValue" Type="float" Nullable="false" />
+          <Property Name="IsEnabled" Type="bit" Nullable="false" />
+          <Property Name="Date" Type="datetime2" Nullable="false" />
+          <Property Name="timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="DeviceStatus">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="text" Nullable="false" />
+          <Property Name="StatusColor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DeviceStatusHistory">
+          <Key>
+            <PropertyRef Name="StatusHistoryId" />
+          </Key>
+          <Property Name="StatusHistoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IPAddress" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime2" Nullable="false" />
+          <Property Name="timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="DeviceStatusHistoryLastValues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IPAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="StatusId" Type="int" />
+          <Property Name="Date" Type="datetime2" />
+        </EntityType>
+        <EntityType Name="HistoricalData">
+          <Key>
+            <PropertyRef Name="HistocalDataId" />
+          </Key>
+          <Property Name="HistocalDataId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="float" Nullable="false" />
+          <Property Name="Date" Type="datetime2" Nullable="false" />
+          <Property Name="timestamp" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Ids">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="IP" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ModuleNumber" Type="int" Nullable="false" />
+          <Property Name="ModuleType" Type="int" Nullable="false" />
+          <Property Name="PDIN" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LastValues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Value" Type="float" />
+          <Property Name="HasError" Type="bit" />
+          <Property Name="Date" Type="datetime2" />
+          <Property Name="timestamp" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="ReadIntervals">
+          <Key>
+            <PropertyRef Name="IntervalId" />
+          </Key>
+          <Property Name="IntervalId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdId" Type="int" Nullable="false" />
+          <Property Name="Interval" Type="int" Nullable="false" />
+          <Property Name="MaxInterval" Type="int" Nullable="false" />
+          <Property Name="IsEnabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Update">
+          <Key>
+            <PropertyRef Name="UpdateId" />
+          </Key>
+          <Property Name="UpdateId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateVersion" Type="float" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetime2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UpdateDetails">
+          <Key>
+            <PropertyRef Name="UpdateDetailId" />
+          </Key>
+          <Property Name="UpdateDetailId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateId" Type="int" Nullable="false" />
+          <Property Name="DetailType" Type="int" Nullable="false" />
+          <Property Name="DetailDescription" Type="text" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Calibration_Ids">
+          <End Role="Ids" Type="MonitoringModel.Store.Ids" Multiplicity="1" />
+          <End Role="Calibration" Type="MonitoringModel.Store.Calibration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ids">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calibration">
+              <PropertyRef Name="IdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeviceStatusHistory_DeviceStatus">
+          <End Role="DeviceStatus" Type="MonitoringModel.Store.DeviceStatus" Multiplicity="1" />
+          <End Role="DeviceStatusHistory" Type="MonitoringModel.Store.DeviceStatusHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="DeviceStatusHistory">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeviceStatusHistoryLastValues_DeviceStatus">
+          <End Role="DeviceStatus" Type="MonitoringModel.Store.DeviceStatus" Multiplicity="0..1" />
+          <End Role="DeviceStatusHistoryLastValues" Type="MonitoringModel.Store.DeviceStatusHistoryLastValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="DeviceStatusHistoryLastValues">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoricalData_Ids">
+          <End Role="Ids" Type="MonitoringModel.Store.Ids" Multiplicity="1" />
+          <End Role="HistoricalData" Type="MonitoringModel.Store.HistoricalData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ids">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoricalData">
+              <PropertyRef Name="IdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LastValues_Ids">
+          <End Role="Ids" Type="MonitoringModel.Store.Ids" Multiplicity="1" />
+          <End Role="LastValues" Type="MonitoringModel.Store.LastValues" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Ids">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LastValues">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReadIntervals_Ids">
+          <End Role="Ids" Type="MonitoringModel.Store.Ids" Multiplicity="1" />
+          <End Role="ReadIntervals" Type="MonitoringModel.Store.ReadIntervals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ids">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReadIntervals">
+              <PropertyRef Name="IdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UpdateDetails_Update">
+          <End Role="Update" Type="MonitoringModel.Store.Update" Multiplicity="1" />
+          <End Role="UpdateDetails" Type="MonitoringModel.Store.UpdateDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Update">
+              <PropertyRef Name="UpdateId" />
+            </Principal>
+            <Dependent Role="UpdateDetails">
+              <PropertyRef Name="UpdateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MonitoringModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="MonitoringEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Calibrations" EntityType="MonitoringModel.Calibration" />
+          <EntitySet Name="DeviceStatus" EntityType="MonitoringModel.DeviceStatu" />
+          <EntitySet Name="DeviceStatusHistories" EntityType="MonitoringModel.DeviceStatusHistory" />
+          <EntitySet Name="DeviceStatusHistoryLastValues" EntityType="MonitoringModel.DeviceStatusHistoryLastValue" />
+          <EntitySet Name="HistoricalDatas" EntityType="MonitoringModel.HistoricalData" />
+          <EntitySet Name="Ids" EntityType="MonitoringModel.Id" />
+          <EntitySet Name="LastValues" EntityType="MonitoringModel.LastValue" />
+          <EntitySet Name="ReadIntervals" EntityType="MonitoringModel.ReadInterval" />
+          <EntitySet Name="Updates" EntityType="MonitoringModel.Update" />
+          <EntitySet Name="UpdateDetails" EntityType="MonitoringModel.UpdateDetail" />
+          <AssociationSet Name="FK_Calibration_Ids" Association="MonitoringModel.FK_Calibration_Ids">
+            <End Role="Ids" EntitySet="Ids" />
+            <End Role="Calibration" EntitySet="Calibrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeviceStatusHistory_DeviceStatus" Association="MonitoringModel.FK_DeviceStatusHistory_DeviceStatus">
+            <End Role="DeviceStatus" EntitySet="DeviceStatus" />
+            <End Role="DeviceStatusHistory" EntitySet="DeviceStatusHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeviceStatusHistoryLastValues_DeviceStatus" Association="MonitoringModel.FK_DeviceStatusHistoryLastValues_DeviceStatus">
+            <End Role="DeviceStatus" EntitySet="DeviceStatus" />
+            <End Role="DeviceStatusHistoryLastValues" EntitySet="DeviceStatusHistoryLastValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoricalData_Ids" Association="MonitoringModel.FK_HistoricalData_Ids">
+            <End Role="Ids" EntitySet="Ids" />
+            <End Role="HistoricalData" EntitySet="HistoricalDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LastValues_Ids" Association="MonitoringModel.FK_LastValues_Ids">
+            <End Role="Ids" EntitySet="Ids" />
+            <End Role="LastValues" EntitySet="LastValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReadIntervals_Ids" Association="MonitoringModel.FK_ReadIntervals_Ids">
+            <End Role="Ids" EntitySet="Ids" />
+            <End Role="ReadIntervals" EntitySet="ReadIntervals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UpdateDetails_Update" Association="MonitoringModel.FK_UpdateDetails_Update">
+            <End Role="Update" EntitySet="Updates" />
+            <End Role="UpdateDetails" EntitySet="UpdateDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Calibration">
+          <Key>
+            <PropertyRef Name="CalibrationId" />
+          </Key>
+          <Property Name="CalibrationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdId" Type="Int32" Nullable="false" />
+          <Property Name="CalibrationOperation" Type="Int32" Nullable="false" />
+          <Property Name="CalibrationValue" Type="Double" Nullable="false" />
+          <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Id" Relationship="MonitoringModel.FK_Calibration_Ids" FromRole="Calibration" ToRole="Ids" />
+        </EntityType>
+        <EntityType Name="DeviceStatu">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="StatusColor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DeviceStatusHistories" Relationship="MonitoringModel.FK_DeviceStatusHistory_DeviceStatus" FromRole="DeviceStatus" ToRole="DeviceStatusHistory" />
+          <NavigationProperty Name="DeviceStatusHistoryLastValues" Relationship="MonitoringModel.FK_DeviceStatusHistoryLastValues_DeviceStatus" FromRole="DeviceStatus" ToRole="DeviceStatusHistoryLastValues" />
+        </EntityType>
+        <EntityType Name="DeviceStatusHistory">
+          <Key>
+            <PropertyRef Name="StatusHistoryId" />
+          </Key>
+          <Property Name="StatusHistoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IPAddress" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="DeviceStatu" Relationship="MonitoringModel.FK_DeviceStatusHistory_DeviceStatus" FromRole="DeviceStatusHistory" ToRole="DeviceStatus" />
+        </EntityType>
+        <EntityType Name="DeviceStatusHistoryLastValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IPAddress" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="StatusId" Type="Int32" />
+          <Property Name="Date" Type="DateTime" />
+          <NavigationProperty Name="DeviceStatu" Relationship="MonitoringModel.FK_DeviceStatusHistoryLastValues_DeviceStatus" FromRole="DeviceStatusHistoryLastValues" ToRole="DeviceStatus" />
+        </EntityType>
+        <EntityType Name="HistoricalData">
+          <Key>
+            <PropertyRef Name="HistocalDataId" />
+          </Key>
+          <Property Name="HistocalDataId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="Double" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="timestamp" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Id" Relationship="MonitoringModel.FK_HistoricalData_Ids" FromRole="HistoricalData" ToRole="Ids" />
+        </EntityType>
+        <EntityType Name="Id">
+          <Key>
+            <PropertyRef Name="Id1" />
+          </Key>
+          <Property Name="Id1" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="IP" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ModuleNumber" Type="Int32" Nullable="false" />
+          <Property Name="ModuleType" Type="Int32" Nullable="false" />
+          <Property Name="PDIN" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Calibrations" Relationship="MonitoringModel.FK_Calibration_Ids" FromRole="Ids" ToRole="Calibration" />
+          <NavigationProperty Name="HistoricalDatas" Relationship="MonitoringModel.FK_HistoricalData_Ids" FromRole="Ids" ToRole="HistoricalData" />
+          <NavigationProperty Name="LastValue" Relationship="MonitoringModel.FK_LastValues_Ids" FromRole="Ids" ToRole="LastValues" />
+          <NavigationProperty Name="ReadIntervals" Relationship="MonitoringModel.FK_ReadIntervals_Ids" FromRole="Ids" ToRole="ReadIntervals" />
+        </EntityType>
+        <EntityType Name="LastValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="Double" />
+          <Property Name="HasError" Type="Boolean" />
+          <Property Name="Date" Type="DateTime" />
+          <Property Name="timestamp" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Id1" Relationship="MonitoringModel.FK_LastValues_Ids" FromRole="LastValues" ToRole="Ids" />
+        </EntityType>
+        <EntityType Name="ReadInterval">
+          <Key>
+            <PropertyRef Name="IntervalId" />
+          </Key>
+          <Property Name="IntervalId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdId" Type="Int32" Nullable="false" />
+          <Property Name="Interval" Type="Int32" Nullable="false" />
+          <Property Name="MaxInterval" Type="Int32" Nullable="false" />
+          <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Id" Relationship="MonitoringModel.FK_ReadIntervals_Ids" FromRole="ReadIntervals" ToRole="Ids" />
+        </EntityType>
+        <EntityType Name="Update">
+          <Key>
+            <PropertyRef Name="UpdateId" />
+          </Key>
+          <Property Name="UpdateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateVersion" Type="Double" Nullable="false" />
+          <Property Name="UpdateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="UpdateDetails" Relationship="MonitoringModel.FK_UpdateDetails_Update" FromRole="Update" ToRole="UpdateDetails" />
+        </EntityType>
+        <EntityType Name="UpdateDetail">
+          <Key>
+            <PropertyRef Name="UpdateDetailId" />
+          </Key>
+          <Property Name="UpdateDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateId" Type="Int32" Nullable="false" />
+          <Property Name="DetailType" Type="Int32" Nullable="false" />
+          <Property Name="DetailDescription" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Update" Relationship="MonitoringModel.FK_UpdateDetails_Update" FromRole="UpdateDetails" ToRole="Update" />
+        </EntityType>
+        <Association Name="FK_Calibration_Ids">
+          <End Role="Ids" Type="MonitoringModel.Id" Multiplicity="1" />
+          <End Role="Calibration" Type="MonitoringModel.Calibration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ids">
+              <PropertyRef Name="Id1" />
+            </Principal>
+            <Dependent Role="Calibration">
+              <PropertyRef Name="IdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeviceStatusHistory_DeviceStatus">
+          <End Role="DeviceStatus" Type="MonitoringModel.DeviceStatu" Multiplicity="1" />
+          <End Role="DeviceStatusHistory" Type="MonitoringModel.DeviceStatusHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="DeviceStatusHistory">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeviceStatusHistoryLastValues_DeviceStatus">
+          <End Role="DeviceStatus" Type="MonitoringModel.DeviceStatu" Multiplicity="0..1" />
+          <End Role="DeviceStatusHistoryLastValues" Type="MonitoringModel.DeviceStatusHistoryLastValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="DeviceStatusHistoryLastValues">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoricalData_Ids">
+          <End Role="Ids" Type="MonitoringModel.Id" Multiplicity="1" />
+          <End Role="HistoricalData" Type="MonitoringModel.HistoricalData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ids">
+              <PropertyRef Name="Id1" />
+            </Principal>
+            <Dependent Role="HistoricalData">
+              <PropertyRef Name="IdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LastValues_Ids">
+          <End Role="Ids" Type="MonitoringModel.Id" Multiplicity="1" />
+          <End Role="LastValues" Type="MonitoringModel.LastValue" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Ids">
+              <PropertyRef Name="Id1" />
+            </Principal>
+            <Dependent Role="LastValues">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReadIntervals_Ids">
+          <End Role="Ids" Type="MonitoringModel.Id" Multiplicity="1" />
+          <End Role="ReadIntervals" Type="MonitoringModel.ReadInterval" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ids">
+              <PropertyRef Name="Id1" />
+            </Principal>
+            <Dependent Role="ReadIntervals">
+              <PropertyRef Name="IdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UpdateDetails_Update">
+          <End Role="Update" Type="MonitoringModel.Update" Multiplicity="1" />
+          <End Role="UpdateDetails" Type="MonitoringModel.UpdateDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Update">
+              <PropertyRef Name="UpdateId" />
+            </Principal>
+            <Dependent Role="UpdateDetails">
+              <PropertyRef Name="UpdateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MonitoringModelStoreContainer" CdmEntityContainer="MonitoringEntities">
+          <EntitySetMapping Name="Calibrations">
+            <EntityTypeMapping TypeName="MonitoringModel.Calibration">
+              <MappingFragment StoreEntitySet="Calibration">
+                <ScalarProperty Name="CalibrationId" ColumnName="CalibrationId" />
+                <ScalarProperty Name="IdId" ColumnName="IdId" />
+                <ScalarProperty Name="CalibrationOperation" ColumnName="CalibrationOperation" />
+                <ScalarProperty Name="CalibrationValue" ColumnName="CalibrationValue" />
+                <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeviceStatus">
+            <EntityTypeMapping TypeName="MonitoringModel.DeviceStatu">
+              <MappingFragment StoreEntitySet="DeviceStatus">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StatusColor" ColumnName="StatusColor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeviceStatusHistories">
+            <EntityTypeMapping TypeName="MonitoringModel.DeviceStatusHistory">
+              <MappingFragment StoreEntitySet="DeviceStatusHistory">
+                <ScalarProperty Name="StatusHistoryId" ColumnName="StatusHistoryId" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeviceStatusHistoryLastValues">
+            <EntityTypeMapping TypeName="MonitoringModel.DeviceStatusHistoryLastValue">
+              <MappingFragment StoreEntitySet="DeviceStatusHistoryLastValues">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoricalDatas">
+            <EntityTypeMapping TypeName="MonitoringModel.HistoricalData">
+              <MappingFragment StoreEntitySet="HistoricalData">
+                <ScalarProperty Name="HistocalDataId" ColumnName="HistocalDataId" />
+                <ScalarProperty Name="IdId" ColumnName="IdId" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ids">
+            <EntityTypeMapping TypeName="MonitoringModel.Id">
+              <MappingFragment StoreEntitySet="Ids">
+                <ScalarProperty Name="Id1" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="ModuleNumber" ColumnName="ModuleNumber" />
+                <ScalarProperty Name="ModuleType" ColumnName="ModuleType" />
+                <ScalarProperty Name="PDIN" ColumnName="PDIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LastValues">
+            <EntityTypeMapping TypeName="MonitoringModel.LastValue">
+              <MappingFragment StoreEntitySet="LastValues">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="HasError" ColumnName="HasError" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReadIntervals">
+            <EntityTypeMapping TypeName="MonitoringModel.ReadInterval">
+              <MappingFragment StoreEntitySet="ReadIntervals">
+                <ScalarProperty Name="IntervalId" ColumnName="IntervalId" />
+                <ScalarProperty Name="IdId" ColumnName="IdId" />
+                <ScalarProperty Name="Interval" ColumnName="Interval" />
+                <ScalarProperty Name="MaxInterval" ColumnName="MaxInterval" />
+                <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Updates">
+            <EntityTypeMapping TypeName="MonitoringModel.Update">
+              <MappingFragment StoreEntitySet="Update">
+                <ScalarProperty Name="UpdateId" ColumnName="UpdateId" />
+                <ScalarProperty Name="UpdateVersion" ColumnName="UpdateVersion" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UpdateDetails">
+            <EntityTypeMapping TypeName="MonitoringModel.UpdateDetail">
+              <MappingFragment StoreEntitySet="UpdateDetails">
+                <ScalarProperty Name="UpdateDetailId" ColumnName="UpdateDetailId" />
+                <ScalarProperty Name="UpdateId" ColumnName="UpdateId" />
+                <ScalarProperty Name="DetailType" ColumnName="DetailType" />
+                <ScalarProperty Name="DetailDescription" ColumnName="DetailDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model">
+        <EntityTypeShape EntityType="MonitoringModel.Calibration" Width="1.5" PointX="3" PointY="1.375" Height="2.5290543081363044" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonitoringModel.DeviceStatu" Width="1.5" PointX="5.75" PointY="2.375" Height="2.1495671612024303" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonitoringModel.DeviceStatusHistory" Width="1.875" PointX="8" PointY="1.125" Height="1.9436327856779099" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonitoringModel.DeviceStatusHistoryLastValue" Width="1.5" PointX="8" PointY="4" Height="1.9598235877354941" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonitoringModel.HistoricalData" Width="1.5" PointX="3" PointY="4.625" Height="2.1495671612024303" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonitoringModel.Id" Width="1.5" PointX="0.75" PointY="5.5" Height="2.9085414550701767" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonitoringModel.LastValue" Width="1.5" PointX="3" PointY="7.625" Height="2.1495671612024303" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonitoringModel.ReadInterval" Width="1.5" PointX="3" PointY="10.5" Height="2.1495671612024303" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonitoringModel.Update" Width="1.5" PointX="5.75" PointY="7" Height="1.7700800142685571" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonitoringModel.UpdateDetail" Width="1.5" PointX="8" PointY="6.875" Height="1.9598235877354924" IsExpanded="true" />
+        <AssociationConnector Association="MonitoringModel.FK_Calibration_Ids" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="5.5" />
+          <ConnectorPoint PointX="1.5" PointY="2.6395271540681522" />
+          <ConnectorPoint PointX="3" PointY="2.6395271540681522" />
+        </AssociationConnector>
+        <AssociationConnector Association="MonitoringModel.FK_DeviceStatusHistory_DeviceStatus" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.25" PointY="2.7218163928389547" />
+          <ConnectorPoint PointX="8" PointY="2.7218163928389547" />
+        </AssociationConnector>
+        <AssociationConnector Association="MonitoringModel.FK_DeviceStatusHistoryLastValues_DeviceStatus" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.25" PointY="4.2622835806012151" />
+          <ConnectorPoint PointX="8" PointY="4.2622835806012151" />
+        </AssociationConnector>
+        <AssociationConnector Association="MonitoringModel.FK_HistoricalData_Ids" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.1372835806012151" />
+          <ConnectorPoint PointX="3" PointY="6.1372835806012151" />
+        </AssociationConnector>
+        <AssociationConnector Association="MonitoringModel.FK_LastValues_Ids" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="8.01677072753509" />
+          <ConnectorPoint PointX="3" PointY="8.01677072753509" />
+        </AssociationConnector>
+        <AssociationConnector Association="MonitoringModel.FK_ReadIntervals_Ids" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="8.4085414550701767" />
+          <ConnectorPoint PointX="1.5" PointY="11.574783580601215" />
+          <ConnectorPoint PointX="3" PointY="11.574783580601215" />
+        </AssociationConnector>
+        <AssociationConnector Association="MonitoringModel.FK_UpdateDetails_Update" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.25" PointY="7.885040007134279" />
+          <ConnectorPoint PointX="8" PointY="7.885040007134279" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

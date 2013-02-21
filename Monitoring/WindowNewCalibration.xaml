@@ -1,0 +1,32 @@
+﻿<Window xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  x:Class="Monitoring.WindowNewCalibration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="کالیبره جدید" Height="189.969" Width="387.877" Loaded="Window_Loaded_1">
+    <Grid FlowDirection="RightToLeft">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="نام" VerticalAlignment="Center" HorizontalAlignment="Right" MinWidth="50" Margin="10,0,0,0"/>
+                <telerik:RadComboBox x:Name="ComboBoxTitles" DisplayMemberPath="Title" SelectedValuePath="Id"
+            		MinWidth="200"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="نوع کالیبره" VerticalAlignment="Center" MinWidth="50" Margin="10,0,0,0"/>
+                <telerik:RadComboBox Name="ComboBoxCalibrationOperation" MinWidth="200">
+                    <telerik:RadComboBoxItem Content="جمع" IsSelected="True"/>
+                    <telerik:RadComboBoxItem Content="ضرب" />
+                </telerik:RadComboBox>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="مقدار" VerticalAlignment="Center" MinWidth="50" Margin="10,0,0,0"/>
+                <telerik:RadNumericUpDown MinWidth="200" Name="NumericUpDownValue"/>
+
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <telerik:RadButton Content="ثبت" Name="ButtonSave" Width="70" Height="30" Margin="20,0,0,0" Click="ButtonSave_Click_1"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

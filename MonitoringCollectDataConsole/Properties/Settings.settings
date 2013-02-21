@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MonitoringCollectDataConsole.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="MonitoringServiceUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">net.tcp://192.168.17.117:9000/MonitoringService</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
